@@ -1,0 +1,45 @@
+{% extends 'portfolio/base.html' %} {% block content %}
+
+<h1 class="text-center">Base of portfolio</h1>
+{% load static %}
+<!-- <a href="{% static 'portfolio/CVDaniel_Piętka.pdf' %}">Resume</a>
+<br />
+<img
+  src="{% static 'portfolio/water.jpg' %}"
+  style="width: 100px; height: 100px"
+/>
+ -->
+<hr />
+
+<div class="container">
+  <div class="row justify-content-center">
+    {% for project in projects %}
+    <div class="col-sm">
+      {% if project.url %}
+      <div class="thumbnail">
+        <a href="{{project.url}}" target="_blank">
+          <img
+          class="rounded mx-auto d-block"
+            src="{{  project.image.url  }}"
+            style="width: 200px; height: 200px" />
+          <br/>
+        </a>
+        {% else %}
+        <img
+        class="rounded mx-auto d-block"
+          src="{{  project.image.url  }}"
+          style="width: 200px; height: 200px"
+        /> <br>
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ project.title }}</h5>
+          <p class="card-text">{{ project.description }}</p>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
